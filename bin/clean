@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+rm -rf \
+build \
+dist \
+site \
+htmlcov \
+.mypy_cache \
+.pytest_cache \
+.ruff_cache \
+*.egg-info \
+coverage.xml \
+.coverage

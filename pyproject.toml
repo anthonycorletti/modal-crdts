@@ -1,0 +1,111 @@
+[project]
+name = "app"
+version = "0.0.0"
+description = "Modal + CRDTs == cool stuff"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.114.1",
+    "httpx>=0.27.2",
+    "modal>=0.64.103",
+    "pydantic-settings>=2.5.2",
+    "structlog>=24.4.0",
+    "uvicorn>=0.30.6",
+    "websockets>=13.1",
+    "y-py>=0.6.2",
+    "ypy-websocket>=0.12.4",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "coverage>=7.6.1",
+    "greenlet>=3.1.0",
+    "mypy>=1.11.2",
+    "pytest>=8.3.3",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=5.0.0",
+    "rich>=13.8.1",
+    "ruff>=0.6.4",
+    "toml>=0.10.2",
+    "types-toml>=0.10.8.20240310",
+    "asgi-lifespan>=2.1.0",
+]
+
+[project.license]
+text = "SEE LICENSE"
+
+[project.urls]
+Home = "https://github.com/anthonycorletti/modal-crdts"
+Documentation = "https://github.com/anthonycorletti/modal-crdts"
+
+[tool.ruff]
+line-length = 88
+include = ["*.py"]
+exclude = ["dist", "build", ".venv"]
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+disallow_untyped_defs = true
+exclude = ["dist", "build", ".venv"]
+
+[tool.ruff.lint]
+ignore = [
+    "D10",
+    "D203",
+    "D204",
+    "D213",
+    "D215",
+    "D400",
+    "D404",
+    "D406",
+    "D407",
+    "D408",
+    "D409",
+    "D413",
+    "D415",
+]
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "-o",
+    "console_output_style=progress",
+    "--asyncio-mode=auto",
+    "--disable-warnings",
+    "--showlocals",
+    "--cov=app",
+    "--cov=tests",
+    "--cov-report=term-missing",
+    "--cov-report=xml",
+    "--cov-report=html",
+]
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.coverage.run]
+parallel = true
+source = ["app", "tests"]
+omit = ["*__init__.py", "app/_modal.py"]
+concurrency = ["thread", "greenlet", "multiprocessing"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover"]
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.setuptools.package-data]
+app = ["py.typed"]
+
+[tool.setuptools.dynamic.version]
+attr = "app.__version__"
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]

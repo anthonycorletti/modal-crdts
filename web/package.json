@@ -1,0 +1,22 @@
+{
+  "name": "web",
+  "module": "app.js",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "quill": "^2.0.2",
+    "quill-cursors": "^4.0.3",
+    "unique-names-generator": "^4.7.1",
+    "y-quill": "^1.0.0",
+    "y-websocket": "^2.0.4",
+    "yjs": "^13.6.19"
+  },
+  "scripts": {
+    "build": "bun build ./app.js --outfile=../app/static/bundle.js --minify"
+  }
+}

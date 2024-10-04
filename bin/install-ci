@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+uv sync --frozen --all-extras
+uv build

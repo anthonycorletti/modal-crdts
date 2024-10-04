@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+# set the APP_ENV environment variable to production if it is not already set
+APP_ENV=${APP_ENV:-"production"} uv run modal deploy app/_modal.py

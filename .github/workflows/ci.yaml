@@ -1,0 +1,43 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    env:
+      APP_ENV: test
+
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
+
+      - name: set up python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: create test venv
+        run: uv venv
+
+      - name: install
+        run: bin/install-ci
+
+      - name: lint
+        run: bin/check
+
+      - name: test
+        run: bin/test
