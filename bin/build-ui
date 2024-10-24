@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+bun build web/app.js --outfile=app/static/bundle.js

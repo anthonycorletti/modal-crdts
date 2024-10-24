@@ -47,6 +47,5 @@ window.addEventListener('load', () => {
         color: `#${Array.from({ length: 3 }, () => ('0' + Math.floor(Math.random() * 128).toString(16)).slice(-2)).join('')}`
     })
 
-    // @ts-ignore
     window.example = { provider, ydoc, ytext, binding, Y }
 })
